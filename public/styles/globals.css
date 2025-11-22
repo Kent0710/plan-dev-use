@@ -46,3 +46,19 @@ main {
     padding: 2rem;
     border-radius: 50px;
 }
+
+@media (max-width: 1024px) {
+    header {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: flex-start;
+    }
+
+    .sub-main {
+        flex-direction: column;
+    }
+
+    .timer-section-content {
+        width: 100%;
+    }
+}
