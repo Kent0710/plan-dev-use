@@ -127,6 +127,7 @@ export class StartTimer {
                         if (this.firstTimerFinished && this.secondTimerFinished && this.thirdTimerFinished) {
                             this.showTimerValueControls();
                             this.enableStartTimer();
+                            this.hideResetAndPauseTimers();
                         }
                         console.log('Third timer finished!');
                         return;
@@ -254,5 +255,13 @@ export class StartTimer {
             this.startTimerBtn.disabled = false;
             this.startTimerBtn.classList.remove('disabled-btn');
         }
+    }
+
+    showFinishedMessage() {
+        const main = document.querySelector('main');
+        const message = document.createElement('div');
+        message.classList.add('finished-message');
+        message.textContent = 'All timers finished!';
+        main.appendChild(message);
     }
 }
