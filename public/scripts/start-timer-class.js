@@ -19,6 +19,9 @@ export class StartTimer {
         // Hide controsl that allows value up or down
         this.hideTimerValueControls()
 
+        // Show timers
+        this.showPauseTimer();
+
 
         this.disableStartTimer();
 
@@ -184,6 +187,21 @@ export class StartTimer {
         this.thirdTimer.seconds.upBtn.style.display = "";
         this.thirdTimer.seconds.downBtn.style.display = "";
     }
+    
+    showPauseTimer() {
+        const pauseTimerBtn = document.createElement('button');
+        pauseTimerBtn.classList.add('secondary-btn', 'pause-timer-btn');
+        pauseTimerBtn.textContent = 'Pause Timer';
+        this.startTimerBtn.parentNode.insertBefore(pauseTimerBtn, this.startTimerBtn.nextSibling);
+        pauseTimerBtn.addEventListener('click', () => {
+            clearInterval(this.timeInterval);
+            this.enableStartTimer();
+            this.showTimerValueControls();
+            pauseTimerBtn.remove();
+        });
+        
+    }
+
 
     disableStartTimer() {
         this.startTimerBtn.disabled = true;
