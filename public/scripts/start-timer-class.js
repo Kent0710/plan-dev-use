@@ -21,6 +21,7 @@ export class StartTimer {
 
         // Show timers
         this.showPauseTimer();
+        this.showResetTimer();
 
 
         this.disableStartTimer();
@@ -199,9 +200,33 @@ export class StartTimer {
             this.showTimerValueControls();
             pauseTimerBtn.remove();
         });
-        
+
     }
 
+    showResetTimer() {
+        const resetTimerBtn = document.createElement('button');
+        resetTimerBtn.classList.add('secondary-btn', 'reset-timer-btn');
+        resetTimerBtn.textContent = 'Reset Timer';
+        this.startTimerBtn.parentNode.insertBefore(resetTimerBtn, this.startTimerBtn.nextSibling);
+
+        resetTimerBtn.addEventListener('click', () => {
+            clearInterval(this.timeInterval);
+            this.enableStartTimer();
+            this.showTimerValueControls();
+            resetTimerBtn.remove();
+
+            // Clear values
+            this.firstTimer.hours.valueElement.textContent = '00';
+            this.firstTimer.minutes.valueElement.textContent = '00';
+            this.firstTimer.seconds.valueElement.textContent = '00';
+            this.secondTimer.hours.valueElement.textContent = '00';
+            this.secondTimer.minutes.valueElement.textContent = '00';
+            this.secondTimer.seconds.valueElement.textContent = '00';
+            this.thirdTimer.hours.valueElement.textContent = '00';
+            this.thirdTimer.minutes.valueElement.textContent = '00';
+            this.thirdTimer.seconds.valueElement.textContent = '00';
+        });
+    }
 
     disableStartTimer() {
         this.startTimerBtn.disabled = true;
